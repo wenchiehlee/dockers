@@ -4,52 +4,130 @@
 
 Docker-Deck is a user-facing catalog for the Docker images maintained in the [wenchiehlee1020 Docker Hub account](https://hub.docker.com/u/wenchiehlee1020). It brings the information people need to evaluate an image and get started with it into one place: what it does, which version to choose, how to run it, when it was updated, how large it is, and what is known about its security vulnerabilities.
 
-## What users should be able to do
+---
 
-- Browse and understand the available images.
-- Compare tags and versions, including update time and image size.
-- Copy a practical command-line example to pull and run an image.
-- Review vulnerability information and understand when and how it was checked.
-- Follow links to the image's source, documentation, and Docker Hub page.
+## Published Images Catalog
 
-## Image information
+Overview of currently published images on [Docker Hub (`wenchiehlee1020`)](https://hub.docker.com/repositories/wenchiehlee1020):
 
-Each image page should present the following information where it is available:
+| Image | Category | Recommended Tag | Size | Architecture | Pulls | Last Updated | Links |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **`synology-photo-tagger`** | Machine learning & AI | [`v0.3.12`](#synology-photo-tagger) | ~114 MB | `amd64`, `arm64` | 2,960+ | 2026-10-26 | [Docker Hub](https://hub.docker.com/r/wenchiehlee1020/synology-photo-tagger) · [GitHub](https://github.com/ZhongZheng782/Synology-Photo-Tagger) · [Docs](https://zhongzheng782.github.io/Synology-Photo-Tagger/) |
+| **`llm-cli-api-server`** | Machine learning & AI | [`v1.3.2`](#llm-cli-api-server) | ~1.29 GB | `amd64` | 560+ | 2026-10-26 | [Docker Hub](https://hub.docker.com/r/wenchiehlee1020/llm-cli-api-server) |
+| **`chromium`** | Networking & Browser | [`v1.0.0`](#chromium) | ~1.18 GB | `amd64` | 170+ | 2026-10-11 | [Docker Hub](https://hub.docker.com/r/wenchiehlee1020/chromium) |
 
-| Information | What it tells the user |
-| --- | --- |
-| Name and summary | The image's purpose and intended audience. |
-| Usage instructions | Prerequisites, configuration, volumes, ports, and a working example. |
-| Tags and versions | Available releases and the tag recommended for common use. |
-| Updated time | When the image or tag was most recently published. |
-| Image size | The size of the selected image/tag. |
-| Pull and run commands | Copyable commands using the fully qualified image name and selected tag. |
-| Vulnerability status | Scanner or data source, scan time, severity counts, and a link to findings when available. |
-| References | Links to Docker Hub, source code, release notes, and project documentation. |
+---
 
-Information should be shown with its source and timestamp where practical. If a value is unavailable or has not been checked, say so plainly rather than implying that the image is current, small, or vulnerability-free. Vulnerability results are point-in-time findings and should include the scanner/source and last scan time; they are not a guarantee that an image is free of risk.
+## Image Details & Usage
 
-## Example image page
+### `synology-photo-tagger`
 
-The following is a content template, not a claim about any specific image:
+**Synology Photos with private MLX analysis and per-user tag vocabulary.**
 
-### `<image-name>`
+A lightweight web app for browsing Synology Photos libraries and inspecting photo metadata with private AI-assisted descriptions and tag suggestions.
 
-`<One-sentence description of what this image does and who it is for.>`
+- **Recommended tag:** `v0.3.12` (or `latest`)
+- **Image size:** ~114 MB (Compressed download)
+- **Supported architectures:** `linux/amd64`, `linux/arm64`
+- **Total pulls:** 2,960+
+- **Latest update:** 2026-10-26
+- **Docker Hub:** [wenchiehlee1020/synology-photo-tagger](https://hub.docker.com/r/wenchiehlee1020/synology-photo-tagger)
+- **Source code:** [ZhongZheng782/Synology-Photo-Tagger](https://github.com/ZhongZheng782/Synology-Photo-Tagger)
+- **Documentation:** [Synology Photo Tagger Portal](https://zhongzheng782.github.io/Synology-Photo-Tagger/)
 
-- **Latest update:** `<date and time>`
-- **Recommended tag:** `<tag>`
-- **Image size:** `<size>`
-- **Vulnerability check:** `<status and last checked time>`
-- **Docker Hub:** `<link>`
-- **Source and documentation:** `<links>`
+#### Quickstart
 
 ```sh
-docker pull wenchiehlee1020/<image-name>:<tag>
-docker run --rm wenchiehlee1020/<image-name>:<tag>
+docker pull wenchiehlee1020/synology-photo-tagger:v0.3.12
 ```
 
-Add the image's actual required options, such as ports, environment variables, and volume mounts, to the run example and explain them alongside the command.
+Using Docker Compose:
+
+```yaml
+version: "3"
+services:
+  photo-tagger:
+    image: wenchiehlee1020/synology-photo-tagger:v0.3.12
+    container_name: synology-photo-tagger
+    ports:
+      - "5056:5056"
+    env_file:
+      - .env
+    restart: unless-stopped
+```
+
+---
+
+### `llm-cli-api-server`
+
+**LLM CLI & MCP Bridge Server on Synology NAS (Codex CLI, Antigravity CLI, OpenAI Tunnel).**
+
+Automated bridge server enabling execution and proxying of LLM CLI tooling (`codex-cli`, `agy` Antigravity CLI, OpenAI Secure MCP Tunnel) on Synology NAS Container Manager with token persistence and smart routing.
+
+- **Recommended tag:** `v1.3.2`
+- **Image size:** ~1.29 GB (Compressed download)
+- **Supported architectures:** `linux/amd64`
+- **Total pulls:** 560+
+- **Latest update:** 2026-10-26
+- **Docker Hub:** [wenchiehlee1020/llm-cli-api-server](https://hub.docker.com/r/wenchiehlee1020/llm-cli-api-server)
+
+#### Quickstart
+
+```sh
+docker pull wenchiehlee1020/llm-cli-api-server:v1.3.2
+```
+
+Running the container:
+
+```sh
+docker run -d \
+  --name llm-cli-api-server \
+  -p 8443:8443 \
+  -v ./codex-auth:/app/codex-auth \
+  -v ./gemini-auth:/app/gemini-auth \
+  -e CODEX_API_KEY="your-api-key" \
+  wenchiehlee1020/llm-cli-api-server:v1.3.2
+```
+
+---
+
+### `chromium`
+
+**Chromium with pre-installed Chinese fonts, KasmVNC web GUI, and supervised CDP proxy on Synology NAS.**
+
+A production-ready headless/desktop Chromium container optimized for scraping, automation, and remote browser testing. Pre-bundles Noto CJK, WenQuanYi, and Arphic Chinese fonts, and includes an s6-overlay supervised remote Chrome DevTools Protocol (CDP) proxy on port 9222.
+
+- **Recommended tag:** `v1.0.0` (or `latest`)
+- **Image size:** ~1.18 GB (Compressed download)
+- **Supported architectures:** `linux/amd64`
+- **Total pulls:** 170+
+- **Latest update:** 2026-10-11
+- **Docker Hub:** [wenchiehlee1020/chromium](https://hub.docker.com/r/wenchiehlee1020/chromium)
+
+#### Quickstart
+
+```sh
+docker run -d \
+  --name chromium \
+  -p 3020:3000 \
+  -p 3021:3001 \
+  -p 9222:9222 \
+  -e TITLE="Chromium Desktop" \
+  -e CUSTOM_USER="myuser" \
+  -e PASSWORD="mysecurepassword" \
+  -e TZ=Asia/Taipei \
+  -e CHROME_CLI="--remote-debugging-port=9222 --remote-allow-origins=* --disable-features=FontationsFontBackend https://about:blank" \
+  -e LC_ALL=zh_TW.UTF-8 \
+  --shm-size="1gb" \
+  --security-opt seccomp:unconfined \
+  -v ./config:/config \
+  wenchiehlee1020/chromium:v1.0.0
+```
+
+- **Web GUI:** `http://<HOST_IP>:3020` (HTTP) or `https://<HOST_IP>:3021` (HTTPS)
+- **Remote CDP Debugging:** `http://<HOST_IP>:9222`
+
+---
 
 ## Project relationship
 
@@ -59,7 +137,3 @@ Docker-Deck is part of the `.Deck` family of sites:
 - **Skill-Deck** ([Portal](https://wenchiehlee.github.io/skills/) · [Repo](https://github.com/wenchiehlee/skills)) — skills and related resources.
 - **Analytics-Deck** ([Portal](https://wenchiehlee.github.io/Analytics-Deck/) · [Repo](https://github.com/wenchiehlee/Analytics-Deck)) — telemetry and analytics observability hub across ecosystem endpoints.
 - **Docker-Deck** ([Portal](https://wenchiehlee.github.io/dockers/) · [Repo](https://github.com/wenchiehlee/dockers)) — this repository, focused on Docker image discovery and usage.
-
-## Draft direction
-
-The portal should make the first-use path easy: understand the image, choose a tag, check its freshness and security information, then copy a command and get started. This README is the initial content and product brief; image-specific facts and implementation details should be added as the catalog is built.
