@@ -55,10 +55,10 @@ Add the image's actual required options, such as ports, environment variables, a
 
 Docker-Deck is part of the `.Deck` family of sites:
 
-- [UX-Deck](https://wenchiehlee-ux.github.io/UX-Deck/) ([Repo](https://github.com/wenchiehlee-ux/UX-Deck)) — UX resources and presentation.
-- [Skill-Deck](https://wenchiehlee.github.io/skills/) ([Repo](https://github.com/wenchiehlee/skills)) — skills and related resources.
-- [Analytics-Deck](https://wenchiehlee.github.io/Analytics-Deck/) ([Repo](https://github.com/wenchiehlee/Analytics-Deck)) — telemetry and analytics observability hub across ecosystem endpoints.
-- **Docker-Deck** ([Repo](https://github.com/wenchiehlee/dockers) · [UX Portal](https://wenchiehlee-ux.github.io/UX-Deck/showcases.html#docker-deck)) — this repository, focused on Docker image discovery and usage.
+- **UX-Deck** ([Portal](https://wenchiehlee-ux.github.io/UX-Deck/) · [Repo](https://github.com/wenchiehlee-ux/UX-Deck)) — UX resources and presentation.
+- **Skill-Deck** ([Portal](https://wenchiehlee.github.io/skills/) · [Repo](https://github.com/wenchiehlee/skills)) — skills and related resources.
+- **Analytics-Deck** ([Portal](https://wenchiehlee.github.io/Analytics-Deck/) · [Repo](https://github.com/wenchiehlee/Analytics-Deck)) — telemetry and analytics observability hub across ecosystem endpoints.
+- **Docker-Deck** ([Portal](https://wenchiehlee-ux.github.io/UX-Deck/showcases.html#docker-deck) · [Repo](https://github.com/wenchiehlee/dockers)) — this repository, focused on Docker image discovery and usage.
 
 ## Draft direction
 
