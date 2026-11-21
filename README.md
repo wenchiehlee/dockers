@@ -10,6 +10,8 @@ Docker-Deck is a user-facing catalog for the Docker images maintained in the [we
 
 Overview of currently published images on [Docker Hub (`wenchiehlee1020`)](https://hub.docker.com/repositories/wenchiehlee1020):
 
+This published catalog refreshes tags, image sizes, architectures, pull counts, and update dates from Docker Hub daily. The recommended tag is the highest stable semantic version available for each image.
+
 | Image | Category | Recommended Tag | Size | Architecture | Pulls | Last Updated | Links |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **`synology-photo-tagger`** | Machine learning & AI | [`v0.3.12`](#synology-photo-tagger) | ~114 MB | `amd64`, `arm64` | 2,960+ | 2026-10-26 | [Docker Hub](https://hub.docker.com/r/wenchiehlee1020/synology-photo-tagger) · [GitHub](https://github.com/ZhongZheng782/Synology-Photo-Tagger) · [Docs](https://zhongzheng782.github.io/Synology-Photo-Tagger/) |
